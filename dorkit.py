@@ -2,7 +2,7 @@
 
 from colored import fg,bg,attr
 import argparse
-
+import sys
 
 
 def banner(banner):
@@ -14,12 +14,18 @@ def banner(banner):
         print("%s██║  ██║%s%s"% (fg(27), bg(235), attr(1))+"%s██║   ██║%s%s"% (fg(9), bg(235), attr(1))+"%s██╔══██╗%s%s"% (fg(220), bg(235), attr(1))+"%s██╔═██╗ %s%s"% (fg(27), bg(235), attr(1))+"%s██║%s%s"% (fg(28), bg(235), attr(1))+"%s   ██║   %s%s"% (fg(9), bg(235), attr(1)))
         print("%s██████╔╝%s%s"% (fg(27), bg(235), attr(1))+"%s╚██████╔╝%s%s"% (fg(9), bg(235), attr(1))+"%s██║  ██║%s%s"% (fg(220), bg(235), attr(1))+"%s██║  ██╗%s%s"% (fg(27), bg(235), attr(1))+"%s██║%s%s"% (fg(28), bg(235), attr(1))+"%s   ██║   %s%s"% (fg(9), bg(235), attr(1)))
         print("%s╚═════╝ %s%s"% (fg(27), bg(235), attr(1))+"%s ╚═════╝ %s%s"% (fg(9), bg(235), attr(1))+"%s╚═╝  ╚═╝%s%s"% (fg(220), bg(235), attr(1))+"%s╚═╝  ╚═╝%s%s"% (fg(27), bg(235), attr(1))+"%s╚═╝%s%s"% (fg(28), bg(235), attr(1))+"%s   ╚═╝   %s%s"% (fg(9), bg(235), attr(1)))
+        print("\n%shttps://github.com/marulecha%s%s"% (fg(8), bg(235), attr(1)))
         print("\n\n")
 
+def argCheck(argLen,parser):
+    if argLen < 2:
+        print("%s[-] Example Usage:\n\tpython3 dorkit.py --inurl \"keyword\"%s%s\n"% (fg(9), bg(235), attr(1)))
+        print("[-] For more help:\n\tpython3 dorkit.py --help\n")
 
-parser = argparse.ArgumentParser(description='Process some integers.')
+parser = argparse.ArgumentParser(description='List of accepted arguments.')
 parser.add_argument('-b','--banner', default=True, action='store_false', required=False, help='Don\'t print Banner')
 parser.add_argument('-db','--database' , type=str, metavar='',required=False ,help='Use GHDB Search\n')
+parser.add_argument('-o','--outfile' , type=str, metavar='',required=False ,help='Select file to save output.')
 parser.add_argument('--allintext' , type=str, metavar='',required=False ,help='Searches for occurrences of all the keywords given. ( --allintext "keyword" )')
 parser.add_argument('--intext' , type=str, metavar='',required=False ,help='Searches for the occurrences of keywords all at once or one at a time. ( --intext "keyword" )')
 parser.add_argument('--inurl' , type=str, metavar='',required=False ,help='Searches for a URL matching one of the keywords. ( --inurl "keyword" )')
@@ -38,5 +44,7 @@ parser.add_argument('--related' , type=str, metavar='',required=False ,help='Lis
 parser.add_argument('--cache' , type=str, metavar='',required=False ,help='Shows the version of the web page that Google has in its cache. ( --cache www.google.com )')
 parser.add_argument('--altloc' , type=str, metavar='',required=False ,help='Searches for location in addition to one specified by language of site. ( --altloc en-us )')
 args = parser.parse_args()
+argLen = len(sys.argv)
 
 banner(args.banner)
+argCheck(argLen,parser)
