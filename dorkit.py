@@ -95,6 +95,7 @@ def googleSearch(query, num2, pause2):
     #file names
     textFile = dir+"/output_dorkit.txt"
     csvFile = dir+"/output_dorkit.csv"
+    print('%s'% (fg(2)))
     #write the results into csv and txt files.
     with open(textFile,'a') as txt:
         with open(csvFile,'a') as csv:
